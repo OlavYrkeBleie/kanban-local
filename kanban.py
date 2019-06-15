@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # kanban-local - work in progress
+# todo: add cards, save, share
 
 import tkinter as tk
 
