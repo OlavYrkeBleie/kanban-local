@@ -50,6 +50,7 @@ def build_card(parent,card,col):
     if card.body:
         tk.Label(f,text=card.body,bg="white",font=("Segoe UI",8),
                  wraplength=CARD_W-20,fg="#555").pack(anchor="w",padx=8,pady=(0,2))
+    # show tags as colored badges
     if card.tags:
         tf=tk.Frame(f,bg="white"); tf.pack(anchor="w",padx=8,pady=(0,3))
         for tag in card.tags:
