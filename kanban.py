@@ -50,7 +50,6 @@ def build_card(parent,card,col):
     if card.body:
         tk.Label(f,text=card.body,bg="white",font=("Segoe UI",8),
                  wraplength=CARD_W-20,fg="#555").pack(anchor="w",padx=8,pady=(0,2))
-    # show tags as colored badges
     if card.tags:
         tf=tk.Frame(f,bg="white"); tf.pack(anchor="w",padx=8,pady=(0,3))
         for tag in card.tags:
@@ -100,6 +99,13 @@ def import_json():
 root=tk.Tk(); root.title("kanban-local"); root.geometry("960x600"); root.configure(bg=APP_BG)
 load()
 
+try:
+    from PIL import ImageGrab
+    PIL_OK=True
+except ImportError:
+    PIL_OK=False
+
+
 top=tk.Frame(root,bg="#2c3e50",height=38); top.pack(fill="x"); top.pack_propagate(False)
 tk.Label(top,text="kanban-local",bg="#2c3e50",fg="white",
          font=("Segoe UI",11,"bold")).pack(side="left",padx=12,pady=8)
@@ -107,6 +113,20 @@ tk.Button(top,text="Export JSON",command=export_json,bg="#27ae60",fg="white",
           bd=0,padx=8,pady=3).pack(side="right",padx=4,pady=5)
 tk.Button(top,text="Import JSON",command=import_json,bg="#27ae60",fg="white",
           bd=0,padx=8,pady=3).pack(side="right",padx=2,pady=5)
+
+def screenshot():
+    if not PIL_OK:
+        from tkinter import messagebox
+        messagebox.showerror("Error","pip install pillow"); return
+    root.update()
+    img=ImageGrab.grab(bbox=(root.winfo_rootx(),root.winfo_rooty(),
+        root.winfo_rootx()+root.winfo_width(),root.winfo_rooty()+root.winfo_height()))
+    import os; path=os.path.join(os.path.expanduser("~"),"Desktop","kanban.png")
+    img.save(path)
+    from tkinter import messagebox
+    messagebox.showinfo("Saved",f"Saved to {path}")
+tk.Button(top,text="Screenshot",command=screenshot,bg="#2980b9",fg="white",
+          bd=0,padx=8,pady=3).pack(side="right",padx=4,pady=5)
 
 main=tk.Frame(root,bg=APP_BG); main.pack(fill="both",expand=True)
 
