@@ -276,6 +276,7 @@ class KanbanApp:
         self.data=AppData.load()
         self.current_board=self.data.boards[0]
         self.view="board"; self.col_frames={}
+        # start on board view
         self._build_ui(); self._autosave_loop()
 
     def _close(self):
