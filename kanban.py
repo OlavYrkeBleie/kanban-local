@@ -16,7 +16,7 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-# ── config ────────────────────────────────────────────────────────────────────
+# ── config / constants ────────────────────────────────────────────────────────────────
 DATA_DIR    = os.path.join(os.path.expanduser("~"), ".kanban-local")
 DATA_FILE   = os.path.join(DATA_DIR, "data.json")
 AUTOSAVE_MS = 30_000
@@ -276,7 +276,6 @@ class KanbanApp:
         self.data=AppData.load()
         self.current_board=self.data.boards[0]
         self.view="board"; self.col_frames={}
-        # start on board view
         self._build_ui(); self._autosave_loop()
 
     def _close(self):
