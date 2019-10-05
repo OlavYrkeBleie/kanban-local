@@ -272,7 +272,6 @@ class KanbanApp:
         self.root=root; self.root.title("kanban-local")
         self.root.geometry("1100x660"); self.root.minsize(800,500)
         self.root.configure(bg=APP_BG)
-        # intercept close button - ask quit or minimize
         self.root.protocol("WM_DELETE_WINDOW",self._close)
         self.data=AppData.load()
         self.current_board=self.data.boards[0]
