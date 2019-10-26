@@ -19,7 +19,7 @@ except ImportError:
 # ── config / constants ────────────────────────────────────────────────────────────────
 DATA_DIR    = os.path.join(os.path.expanduser("~"), ".kanban-local")
 DATA_FILE   = os.path.join(DATA_DIR, "data.json")
-AUTOSAVE_MS = 30_000
+AUTOSAVE_MS = 30_000   # milliseconds
 
 COLUMNS = ["To Do", "In Progress", "Done"]
 
@@ -354,7 +354,6 @@ class KanbanApp:
             outer.pack(side="left",fill="y",padx=8,pady=10); outer.pack_propagate(False)
             hdr=tk.Frame(outer,bg=COL_BG); hdr.pack(fill="x",padx=6,pady=(8,4))
             cnt=len(self.current_board.columns[col])
-            # show card count next to column name
             tk.Label(hdr,text=f"{col}  ({cnt})",bg=COL_BG,
                      font=("Segoe UI",9,"bold")).pack(side="left")
             tk.Button(hdr,text="+",bd=0,bg=COL_BG,font=("Segoe UI",13,"bold"),fg="#27ae60",
