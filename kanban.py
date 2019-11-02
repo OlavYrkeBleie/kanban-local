@@ -191,6 +191,7 @@ class CardWidget(tk.Frame):
         tk.Button(bf,text="✕",bd=0,bg="#f5b7b1",font=("Segoe UI",8),
                   command=self._delete,padx=3).pack(side="right",padx=1)
 
+    # cycle through grey->green->yellow->red
     def _cycle(self):
         self.card.status=CYCLE[(CYCLE.index(self.card.status)+1)%len(CYCLE)]
         self._build(); self.app.autosave()
