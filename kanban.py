@@ -16,10 +16,10 @@ try:
 except ImportError:
     PIL_AVAILABLE = False
 
-# ── config / constants ────────────────────────────────────────────────────────────────
+# ── config ────────────────────────────────────────────────────────────────────
 DATA_DIR    = os.path.join(os.path.expanduser("~"), ".kanban-local")
 DATA_FILE   = os.path.join(DATA_DIR, "data.json")
-AUTOSAVE_MS = 30_000   # milliseconds
+AUTOSAVE_MS = 30_000
 
 COLUMNS = ["To Do", "In Progress", "Done"]
 
@@ -286,9 +286,7 @@ class KanbanApp:
         elif ans is False: self.root.iconify()
 
     def autosave(self): self.data.save()
-    def _autosave_loop(self):
-        self.data.save()
-        self.root.after(AUTOSAVE_MS,self._autosave_loop)
+    def _autosave_loop(self): self.data.save(); self.root.after(AUTOSAVE_MS,self._autosave_loop)
 
     def _build_ui(self):
         self.sidebar=tk.Frame(self.root,bg=SIDEBAR_BG,width=180)
