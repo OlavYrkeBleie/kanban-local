@@ -410,6 +410,7 @@ class KanbanApp:
         except Exception as ex:
             messagebox.showerror("Error",f"Could not parse:\n{ex}",parent=self.root)
 
+# ─────────────────────────────────────────────────────────────────────────────
 def main():
     root=tk.Tk(); root.title("kanban-local"); KanbanApp(root); root.mainloop()
 
