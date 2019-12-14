@@ -19,7 +19,7 @@ except ImportError:
 # ── config ────────────────────────────────────────────────────────────────────
 DATA_DIR    = os.path.join(os.path.expanduser("~"), ".kanban-local")
 DATA_FILE   = os.path.join(DATA_DIR, "data.json")
-AUTOSAVE_MS = 30_000
+AUTOSAVE_MS = 30_000   # 30 seconds
 
 COLUMNS = ["To Do", "In Progress", "Done"]
 
@@ -410,7 +410,6 @@ class KanbanApp:
         except Exception as ex:
             messagebox.showerror("Error",f"Could not parse:\n{ex}",parent=self.root)
 
-# ─────────────────────────────────────────────────────────────────────────────
 def main():
     root=tk.Tk(); root.title("kanban-local"); KanbanApp(root); root.mainloop()
 
