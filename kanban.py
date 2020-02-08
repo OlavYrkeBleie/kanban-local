@@ -19,7 +19,7 @@ except ImportError:
 # ── config ────────────────────────────────────────────────────────────────────
 DATA_DIR    = os.path.join(os.path.expanduser("~"), ".kanban-local")
 DATA_FILE   = os.path.join(DATA_DIR, "data.json")
-AUTOSAVE_MS = 30_000   # 30 seconds
+AUTOSAVE_MS = 30_000
 
 COLUMNS = ["To Do", "In Progress", "Done"]
 
@@ -387,6 +387,7 @@ class KanbanApp:
         self.root.update()
         x=self.root.winfo_rootx(); y=self.root.winfo_rooty()
         img=ImageGrab.grab(bbox=(x,y,x+self.root.winfo_width(),y+self.root.winfo_height()))
+        # save to desktop, works on windows and mac
         path=os.path.join(os.path.expanduser("~"),"Desktop","kanban_screenshot.png")
         img.save(path)
         messagebox.showinfo("Saved",f"Screenshot saved to Desktop.\nOpen and paste into Discord.",parent=self.root)
