@@ -387,7 +387,6 @@ class KanbanApp:
         self.root.update()
         x=self.root.winfo_rootx(); y=self.root.winfo_rooty()
         img=ImageGrab.grab(bbox=(x,y,x+self.root.winfo_width(),y+self.root.winfo_height()))
-        # save to desktop, works on windows and mac
         path=os.path.join(os.path.expanduser("~"),"Desktop","kanban_screenshot.png")
         img.save(path)
         messagebox.showinfo("Saved",f"Screenshot saved to Desktop.\nOpen and paste into Discord.",parent=self.root)
