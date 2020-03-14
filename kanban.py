@@ -315,6 +315,7 @@ class KanbanApp:
                     bd=0,bg=TOPBAR_BG,fg="white",insertbackground="white",width=26)
         te.pack(side="left",padx=14,pady=8)
         te.bind("<Return>",self._rename); te.bind("<FocusOut>",self._rename)
+        # topbar buttons right to left
         for txt,cmd,col in [("📷 Screenshot",self._screenshot,"#2980b9"),
                              ("⬇ Import",self._import_json,"#27ae60"),
                              ("⬆ Export",self._export_json,"#27ae60")]:
