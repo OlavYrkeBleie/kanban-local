@@ -248,6 +248,7 @@ class CalPanel(tk.Frame):
                for ev in v.events if k>=str(self.today)][:5]
         for ds,t in items:
             tk.Label(up,text=f"  {ds}  {t}",bg=APP_BG,font=("Segoe UI",8),anchor="w").pack(fill="x")
+        # no upcoming events message
         if not items:
             tk.Label(up,text="  no upcoming events",bg=APP_BG,font=("Segoe UI",8),fg="#888").pack(anchor="w")
 
@@ -315,7 +316,6 @@ class KanbanApp:
                     bd=0,bg=TOPBAR_BG,fg="white",insertbackground="white",width=26)
         te.pack(side="left",padx=14,pady=8)
         te.bind("<Return>",self._rename); te.bind("<FocusOut>",self._rename)
-        # topbar buttons right to left
         for txt,cmd,col in [("📷 Screenshot",self._screenshot,"#2980b9"),
                              ("⬇ Import",self._import_json,"#27ae60"),
                              ("⬆ Export",self._export_json,"#27ae60")]:
