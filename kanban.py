@@ -169,7 +169,7 @@ class CardWidget(tk.Frame):
                      font=("Segoe UI",11),cursor="hand2")
         dot.pack(side="left"); dot.bind("<Button-1>",lambda e:self._cycle())
         tk.Label(top,text=self.card.title,bg=bg,font=("Segoe UI",9,"bold"),
-                 wraplength=CARD_W-45,justify="left").pack(side="left",padx=4)
+                 wraplength=CARD_W-50,justify="left").pack(side="left",padx=4)
         if self.card.body:
             tk.Label(self,text=self.card.body,bg=bg,font=("Segoe UI",8),
                      wraplength=CARD_W-20,justify="left",fg="#444").pack(anchor="w",padx=10,pady=(0,2))
@@ -248,7 +248,6 @@ class CalPanel(tk.Frame):
                for ev in v.events if k>=str(self.today)][:5]
         for ds,t in items:
             tk.Label(up,text=f"  {ds}  {t}",bg=APP_BG,font=("Segoe UI",8),anchor="w").pack(fill="x")
-        # no upcoming events message
         if not items:
             tk.Label(up,text="  no upcoming events",bg=APP_BG,font=("Segoe UI",8),fg="#888").pack(anchor="w")
 
