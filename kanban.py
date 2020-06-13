@@ -169,7 +169,7 @@ class CardWidget(tk.Frame):
                      font=("Segoe UI",11),cursor="hand2")
         dot.pack(side="left"); dot.bind("<Button-1>",lambda e:self._cycle())
         tk.Label(top,text=self.card.title,bg=bg,font=("Segoe UI",9,"bold"),
-                 wraplength=CARD_W-50,justify="left").pack(side="left",padx=4)
+                 wraplength=CARD_W-45,justify="left").pack(side="left",padx=4)
         if self.card.body:
             tk.Label(self,text=self.card.body,bg=bg,font=("Segoe UI",8),
                      wraplength=CARD_W-20,justify="left",fg="#444").pack(anchor="w",padx=10,pady=(0,2))
@@ -346,6 +346,7 @@ class KanbanApp:
         n=self.title_var.get().strip()
         if n: self.current_board.name=n; self._refresh_sidebar(); self.autosave()
 
+    # rebuild clears and redraws all card widgets
     def rebuild_board(self):
         for w in self.content.winfo_children(): w.destroy()
         self.col_frames={}
