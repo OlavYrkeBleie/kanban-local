@@ -232,6 +232,7 @@ class CalPanel(tk.Frame):
                 ds=f"{self.year}-{self.month:02d}-{day:02d}"
                 obj=self.app.data.calendar.get(ds,CalDay())
                 istoday=(datetime.date(self.year,self.month,day)==self.today)
+                # today = green, has events = blue, empty = white
                 cbg="#d5f5e3" if istoday else ("#dbeafe" if (obj.events or obj.text) else "white")
                 cell=tk.Frame(grid,bg=cbg,width=58,height=56,relief="solid",bd=1,cursor="hand2")
                 cell.grid(row=r+1,column=c,padx=1,pady=1); cell.pack_propagate(False)
@@ -346,7 +347,6 @@ class KanbanApp:
         n=self.title_var.get().strip()
         if n: self.current_board.name=n; self._refresh_sidebar(); self.autosave()
 
-    # rebuild clears and redraws all card widgets
     def rebuild_board(self):
         for w in self.content.winfo_children(): w.destroy()
         self.col_frames={}
