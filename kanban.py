@@ -89,7 +89,7 @@ class AppData:
         ad.calendar={k:CalDay.from_dict(v) for k,v in d.get("calendar",{}).items()}
         return ad
     def save(self):
-        os.makedirs(DATA_DIR,exist_ok=True)
+        os.makedirs(DATA_DIR,exist_ok=True)   # creates ~/.kanban-local if missing
         with open(DATA_FILE,"w") as f: json.dump(self.to_dict(),f,indent=2)
     @classmethod
     def load(cls):
@@ -232,7 +232,6 @@ class CalPanel(tk.Frame):
                 ds=f"{self.year}-{self.month:02d}-{day:02d}"
                 obj=self.app.data.calendar.get(ds,CalDay())
                 istoday=(datetime.date(self.year,self.month,day)==self.today)
-                # today = green, has events = blue, empty = white
                 cbg="#d5f5e3" if istoday else ("#dbeafe" if (obj.events or obj.text) else "white")
                 cell=tk.Frame(grid,bg=cbg,width=58,height=56,relief="solid",bd=1,cursor="hand2")
                 cell.grid(row=r+1,column=c,padx=1,pady=1); cell.pack_propagate(False)
