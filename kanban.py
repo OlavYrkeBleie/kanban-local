@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+version: 1.0
 kanban-local
 local kanban board with calendar, json sharing, screenshot export.
 auto-saves to ~/.kanban-local/data.json
@@ -89,7 +90,7 @@ class AppData:
         ad.calendar={k:CalDay.from_dict(v) for k,v in d.get("calendar",{}).items()}
         return ad
     def save(self):
-        os.makedirs(DATA_DIR,exist_ok=True)   # creates ~/.kanban-local if missing
+        os.makedirs(DATA_DIR,exist_ok=True)
         with open(DATA_FILE,"w") as f: json.dump(self.to_dict(),f,indent=2)
     @classmethod
     def load(cls):
