@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-version: 1.0
 kanban-local
 local kanban board with calendar, json sharing, screenshot export.
 auto-saves to ~/.kanban-local/data.json
@@ -197,6 +196,7 @@ class CardWidget(tk.Frame):
         self._build(); self.app.autosave()
     def _left(self): self.app.move_card(self.card,self.col,COLUMNS[COLUMNS.index(self.col)-1])
     def _right(self): self.app.move_card(self.card,self.col,COLUMNS[COLUMNS.index(self.col)+1])
+    # open edit dialog and update card in place
     def _edit(self):
         dlg=CardDialog(self.app.root,self.card)
         if dlg.result:
